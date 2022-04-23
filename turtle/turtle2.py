@@ -45,12 +45,12 @@ def stepTo(x, y):
   #delta = 2
   x1, y1 = (t1.xcor(), t1.ycor())
   alpha = np.arctan2((x - x1), (y - y1))
-  #print(alpha * 180 / np.pi)
-  #t1.write(f'angle: {alpha * 180 / np.pi}')
-  x1 += np.sin(alpha)
-  y1 += np.cos(alpha)
+  dx = np.sin(alpha)
+  dy = np.cos(alpha)
+  x1 = x if x >= x1 and x <= x1+dx else x1 + dx 
+  y1 = y if y >= y1 and y <= y1+dy else y1 + dy
   t1.goto(x1, y1)
-  t1.clear()
+  #t1.clear()
 
 scr = t.getscreen()
 
