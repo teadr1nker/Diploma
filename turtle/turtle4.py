@@ -2,7 +2,7 @@
 from turtle import *
 import numpy as np
 #import _thread as thread
-#import threading 
+import threading 
 
 v = 0 #максимальная скорость черепашки
 step = 50
@@ -77,9 +77,35 @@ for i in range(N):
   turtle.goto((np.random.uniform() - .5) * 500, (np.random.uniform() - .5) * 500)
   turtles.append(turtle)
 
-while True:
-  for turtle in turtles:
+def oneTurtleMoving(turtle):
+  while True:
     x, y = (t.xcor(), t.ycor())
     stepTo(turtle, x, y)
+
+for turtle in turtles:
+  thread = threading.Thread(target=oneTurtleMoving, args=(turtle,))
+  thread.daemon = True
+  thread.start()
     
+  
+'''
+def oneTurtleMoving():
+  leTurtle = Turtle()
+  leTurtle.color('red')
+  leTurtle.shape('circle')
+  leTurtle.width(5)
+  leTurtle.speed(np.random.uniform() * 10)
+  leTurtle.speed(v)
+  leTurtle.penup()
+  leTurtle.goto((np.random.uniform() - .5) * 500, (np.random.uniform() - .5) * 500)
+  while 1:
+    x, y = (t.xcor(), t.ycor())
+    stepTo(leTurtle, x, y)
+
+for i in range(N):  
+  thread = threading.Thread(target=oneTurtleMoving)
+  thread.daemon = True
+  thread.start()
+'''
+
 wn.mainloop()                    
