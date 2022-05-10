@@ -268,61 +268,7 @@ class BugPlanner:
         if show_animation:
             plt.show()
 
-
-def main(bug_0, bug_1, bug_2):
-    # set obstacle positions
-    o_x, o_y = [], []
-
-    s_x = 0.0
-    s_y = 0.0
-    g_x = 10.0
-    g_y = 105.0
-
-    for i in range(20, 40):
-        for j in range(20, 40):
-            o_x.append(i)
-            o_y.append(j)
-
-    for i in range(60, 100):
-        for j in range(40, 80):
-            o_x.append(i)
-            o_y.append(j)
-
-    for i in range(120, 140):
-        for j in range(80, 100):
-            o_x.append(i)
-            o_y.append(j)
-
-    for i in range(80, 140):
-        for j in range(0, 20):
-            o_x.append(i)
-            o_y.append(j)
-
-    for i in range(0, 20):
-        for j in range(60, 100):
-            o_x.append(i)
-            o_y.append(j)
-
-    for i in range(20, 40):
-        for j in range(80, 100):
-            o_x.append(i)
-            o_y.append(j)
-
-    for i in range(120, 160):
-        for j in range(40, 60):
-            o_x.append(i)
-            o_y.append(j)
-
-    if bug_0:
-        my_Bug = BugPlanner(s_x, s_y, g_x, g_y, o_x, o_y)
-        my_Bug.bug0()
-    if bug_1:
-        my_Bug = BugPlanner(s_x, s_y, g_x, g_y, o_x, o_y)
-        my_Bug.bug1()
-    if bug_2:
-        my_Bug = BugPlanner(s_x, s_y, g_x, g_y, o_x, o_y)
-        my_Bug.bug2()
-
-
-if __name__ == '__main__':
-    main(bug_0=True, bug_1=False, bug_2=False)
+def addObstacle(x, y, w, h, o_x, o_y):
+    for i in range(x, w+x):
+        for j in range(y, h+y):
+            o_x.append(i); o_y.append(j)
