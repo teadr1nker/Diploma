@@ -1,0 +1,107 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.281982398396445 -0.6519237637074611 -0.7039043495447994 5.181170644978339
+  position -1.0113608257839977 -1.0490046050053468 1.3010313191121428
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3 3
+}
+Robot {
+  translation 0 0 0.0267
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.05 0 -0.006
+      }
+      device [
+        PositionSensor {
+          name "ps2"
+        }
+        RotationalMotor {
+          name "motor2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.05 0 -0.006
+        rotation -5.851380473311975e-25 1 0 1.57
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.02
+            }
+          }
+        ]
+        name "Solid(1)"
+        boundingObject USE wheel
+        physics DEF wheelPhysics Physics {
+        }
+      }
+    }
+    DEF Body Transform {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.05 0 -0.006
+      }
+      device [
+        PositionSensor {
+          name "ps1"
+        }
+        RotationalMotor {
+          name "motor1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.05 0 -0.006
+        rotation -5.851380473311975e-25 1 0 1.57
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.02
+            }
+          }
+        ]
+        name "Solid"
+        boundingObject USE wheel
+        physics DEF wheelPhysics Physics {
+        }
+      }
+    }
+  ]
+  name "follower"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "controlledRobot"
+}

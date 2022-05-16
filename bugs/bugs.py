@@ -52,7 +52,7 @@ class BugPlanner:
         Greedy algorithm where you move towards goal
         until you hit an obstacle. Then you go around it
         (pick an arbitrary direction), until it is possible
-        for you to start moving towards goal in a greedy manner again
+        for you to start moving towards goal in a greedy manner again@tsurovceva
         """
         mov_dir = 'normal'
         cand_x, cand_y = -np.inf, -np.inf
