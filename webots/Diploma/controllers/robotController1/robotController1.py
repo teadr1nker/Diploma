@@ -3,10 +3,12 @@
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
-import math
+import math, socket
 
 maxSpeed = 6.28
 wheelRadius = .02
+HOST = '127.0.0.1'
+PORT = 2048
 
 def straightDrive():
     # create the Robot instance.
@@ -105,7 +107,7 @@ def doughnuts():
         leftSpeed = .75 * maxSpeed
         rightSpeed = .75 * maxSpeed
 
-        print(f'Robot Position:')
+        print(f'Follower Position:')
         print(f'x: {round(robotPosition[0] * 100, 3)} cm')
         print(f'y: {round(robotPosition[1] * 100, 3)} cm')
         print(f'alpha: {round(robotPosition[2], 3)} rad')
@@ -115,7 +117,7 @@ def doughnuts():
 
         lastEncoderValues = encoderValues
 
-def goto(x, y, d=.05, accuracy=.05):
+def goto(x=0, y=0, d=.05, accuracy=.05):
     robot = Robot()
     timestep = 64
 
@@ -142,7 +144,14 @@ def goto(x, y, d=.05, accuracy=.05):
     robotPosition = [0., 0., 0.]           #x, y, alpha
     distanceBetweenWheels = .1
 
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    print(f'Connected by {addr}')
     while robot.step(timestep) != -1:
+        data = conn.recv(64)
+        print(f'recived {str(data)}')
         encoderValues = [odometer1.getValue(), odometer2.getValue()]
 
         for i in range(2):
