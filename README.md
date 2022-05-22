@@ -3,4 +3,7 @@ group robotics
 
 # Demostration
 turtle
-![](videos/turtle.mp4)
+<video width="320" height="240" controls>
+  <source src="videos/turtle.mp4" type="video/mp4">
+</video>
+
