@@ -3,7 +3,6 @@ group robotics
 
 # Demostration
 turtle
-<video width="320" height="240" controls>
-  <source src="videos/turtle.mp4" type="video/mp4">
-</video>
+
+https://user-images.githubusercontent.com/70961963/169693933-225da207-b8d8-4442-9232-0757457fdf97.mp4
 
